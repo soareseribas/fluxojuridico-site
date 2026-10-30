@@ -209,7 +209,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
 .persona { display: none; position: relative; margin: 0; height: 500px; }
 .persona::before { content: ""; position: absolute; inset: 4% -6%; background: radial-gradient(closest-side, rgba(14,19,27,.9), rgba(14,19,27,.55) 60%, transparent); }
 .persona canvas { position: relative; display: block; width: 100%; height: 100%; }
-.persona figcaption { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: rgba(36,48,66,.72); border: 1px solid rgba(217,167,72,.35); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--creme); white-space: nowrap; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.persona figcaption { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: rgba(36,48,66,.9); border: 1px solid rgba(217,167,72,.35); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--creme); white-space: nowrap; }
 .persona figcaption span { width: 8px; height: 8px; border-radius: 50%; background: var(--ouro); animation: pulsa 1.6s ease-in-out infinite; }
 .heroi.com-persona { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 24px; align-items: center; }
 .heroi.com-persona .persona { display: block; }
@@ -285,13 +285,13 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
   --vidro-navy: linear-gradient(145deg, rgba(43,58,82,.9), rgba(27,36,48,.86));
   --desfoque: blur(18px) saturate(170%);
 }
-body::before { content: ""; position: fixed; inset: -12%; z-index: -1; pointer-events: none;
-  background: radial-gradient(32% 28% at 14% 22%, rgba(217,167,72,.55), transparent 70%),
-              radial-gradient(30% 26% at 86% 30%, rgba(88,128,196,.46), transparent 70%),
-              radial-gradient(36% 30% at 62% 82%, rgba(31,158,87,.24), transparent 70%),
-              radial-gradient(26% 24% at 30% 70%, rgba(196,120,150,.22), transparent 70%), var(--creme);
-  animation: deriva 28s ease-in-out infinite alternate; }
-@keyframes deriva { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
+/* manchas de cor no fundo da página: rolam junto com o conteúdo e não se mexem sozinhas; uma camada fixa animada
+   atrás do vidro deixava rastros da página ao rolar no Chrome do Windows */
+body { background: radial-gradient(32% 20% at 14% 16%, rgba(217,167,72,.36), transparent 70%),
+                   radial-gradient(30% 18% at 86% 34%, rgba(88,128,196,.42), transparent 70%),
+                   radial-gradient(36% 20% at 62% 76%, rgba(31,158,87,.22), transparent 70%),
+                   radial-gradient(26% 16% at 28% 58%, rgba(196,120,150,.2), transparent 70%), var(--creme);
+  background-size: 100% 1800px; }
 section[style*="#fff"] { background: rgba(255,255,255,.34) !important; }
 .escuro:not(.hero):not(.fecho) { background: radial-gradient(42% 48% at 8% 12%, rgba(217,167,72,.2), transparent 70%), radial-gradient(40% 50% at 92% 85%, rgba(72,112,190,.34), transparent 70%), radial-gradient(30% 40% at 55% 45%, rgba(110,80,170,.12), transparent 70%), var(--navy); }
 
@@ -306,7 +306,7 @@ section[style*="#fff"] { background: rgba(255,255,255,.34) !important; }
 .faq details { border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
 
 /* vidro sobre fundo escuro */
-.escuro .cartao, .especialistas li, .frentes li, .no { background: var(--vidro-escuro); border: 1px solid rgba(255,255,255,.13); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque);
+.escuro .cartao, .especialistas li, .frentes li, .no { background: var(--vidro-escuro); border: 1px solid rgba(255,255,255,.13); -webkit-backdrop-filter: none; backdrop-filter: none;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 18px 40px rgba(0,0,0,.22); }
 .escuro .cartao:hover { border-color: rgba(255,255,255,.24); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 22px 48px rgba(0,0,0,.3); }
 .escuro .precos .cartao { background: linear-gradient(150deg, rgba(217,167,72,.17), rgba(255,255,255,.04) 55%, rgba(217,167,72,.06)); border: 1px solid rgba(217,167,72,.38); }
@@ -315,9 +315,9 @@ section[style*="#fff"] { background: rgba(255,255,255,.34) !important; }
 .medidor { background: rgba(255,255,255,.12); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }
 
 /* vidro escuro dentro das seções claras */
-.destaque, .aprende, .resumo .com { background: var(--vidro-navy); border: 1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque);
+.destaque, .aprende, .resumo .com { background: var(--vidro-navy); border: 1px solid rgba(255,255,255,.14);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 20px 44px rgba(27,36,48,.22); }
-.faixa { background: rgba(20,27,36,.86); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque); }
+.faixa { background: #141B24; }
 
 /* reflexo: um aro de luz mais forte no canto de cima e no de baixo, como a borda de uma lente */
 .cartao, .barras, .especialistas li, .destaque, .aprende { position: relative; }
@@ -384,7 +384,6 @@ section[style*="#fff"] { background: rgba(255,255,255,.34) !important; }
   html { scroll-behavior: auto; }
   .js .entra { transform: none; }
   .botao::after { animation: none; }
-  body::before { animation: none; }
 }
 </style>
 </head>
