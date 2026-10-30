@@ -218,12 +218,13 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
 .botao { transition: background .15s, box-shadow .2s, translate .35s cubic-bezier(.2,.7,.2,1); }
 .js .botao.entra { transition: background .15s, box-shadow .2s, translate .35s cubic-bezier(.2,.7,.2,1), opacity .8s cubic-bezier(.2,.7,.2,1) var(--d, 0s), transform .8s cubic-bezier(.2,.7,.2,1) var(--d, 0s); }
 
-/* faixa: os especialistas correndo com a rolagem */
-.faixa { background: #141B24; overflow: hidden; padding: 26px 0; border-bottom: 1px solid rgba(217,167,72,.18); }
-.fila { display: flex; width: max-content; white-space: nowrap; will-change: transform; }
-.fila span { display: inline-flex; align-items: center; }
-.fila span::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); margin: 0 28px; opacity: .8; }
-.fila.um { font-family: var(--serif); font-size: clamp(22px, 3vw, 34px); color: var(--creme); }
+/* faixa: os especialistas, parados e todos à vista */
+.faixa { background: #141B24; padding: 20px 16px; border-bottom: 1px solid rgba(217,167,72,.18); }
+.fila { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 8px; max-width: 1320px; margin: 0 auto; }
+.fila span { display: inline-flex; align-items: center; white-space: nowrap; }
+.fila span:last-child::after { display: none; }
+.fila span::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ouro); margin: 0 10px; opacity: .8; }
+.fila.um { font-family: var(--serif); font-size: clamp(12px, 1vw, 15px); color: var(--creme); }
 
 /* passos com números grandes, que se preenchem ao entrar */
 .passos li::before { content: counter(p, decimal-leading-zero); font-size: 56px; line-height: 1; margin-bottom: 14px; letter-spacing: -1px; -webkit-text-stroke: 1.5px var(--ouro); }
@@ -276,6 +277,68 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
 .mesa.viva li.vazio { opacity: .55; }
 .mesa.viva li.vazio span { opacity: 0; }
 
+/* vidro líquido: cartões e botões translúcidos, com desfoque do que está atrás, borda de luz e reflexo no alto,
+   sobre um fundo de manchas de cor que se movem devagar (é o que dá vida ao vidro) */
+:root {
+  --vidro-claro: linear-gradient(145deg, rgba(255,255,255,.66), rgba(255,255,255,.3));
+  --vidro-escuro: linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.035));
+  --vidro-navy: linear-gradient(145deg, rgba(43,58,82,.9), rgba(27,36,48,.86));
+  --desfoque: blur(18px) saturate(170%);
+}
+body::before { content: ""; position: fixed; inset: -12%; z-index: -1; pointer-events: none;
+  background: radial-gradient(32% 28% at 14% 22%, rgba(217,167,72,.55), transparent 70%),
+              radial-gradient(30% 26% at 86% 30%, rgba(88,128,196,.46), transparent 70%),
+              radial-gradient(36% 30% at 62% 82%, rgba(31,158,87,.24), transparent 70%),
+              radial-gradient(26% 24% at 30% 70%, rgba(196,120,150,.22), transparent 70%), var(--creme);
+  animation: deriva 28s ease-in-out infinite alternate; }
+@keyframes deriva { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
+section[style*="#fff"] { background: rgba(255,255,255,.34) !important; }
+.escuro:not(.hero):not(.fecho) { background: radial-gradient(42% 48% at 8% 12%, rgba(217,167,72,.2), transparent 70%), radial-gradient(40% 50% at 92% 85%, rgba(72,112,190,.34), transparent 70%), radial-gradient(30% 40% at 55% 45%, rgba(110,80,170,.12), transparent 70%), var(--navy); }
+
+/* vidro sobre fundo claro */
+.cartao, .barras, .trilha li, .requisitos, .faq details { background: var(--vidro-claro); border: 1px solid rgba(255,255,255,.7); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95), inset 0 -10px 24px rgba(255,255,255,.18), 0 12px 32px rgba(27,36,48,.08); }
+.cartao:hover { border-color: rgba(255,255,255,.95); box-shadow: inset 0 1px 0 #fff, inset 0 -10px 24px rgba(255,255,255,.25), 0 18px 42px rgba(27,36,48,.13); }
+.requisitos th { background: rgba(27,36,48,.9); }
+.requisitos th, .requisitos td { border-bottom-color: rgba(27,36,48,.08); }
+.barra .trilho { background: rgba(255,255,255,.5); box-shadow: inset 0 1px 3px rgba(27,36,48,.08); }
+.semcota { border-top-color: rgba(27,36,48,.1); }
+.faq details { border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
+
+/* vidro sobre fundo escuro */
+.escuro .cartao, .especialistas li, .frentes li, .no { background: var(--vidro-escuro); border: 1px solid rgba(255,255,255,.13); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 18px 40px rgba(0,0,0,.22); }
+.escuro .cartao:hover { border-color: rgba(255,255,255,.24); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 22px 48px rgba(0,0,0,.3); }
+.escuro .precos .cartao { background: linear-gradient(150deg, rgba(217,167,72,.17), rgba(255,255,255,.04) 55%, rgba(217,167,72,.06)); border: 1px solid rgba(217,167,72,.38); }
+.frentes li { border-color: rgba(217,167,72,.2); }
+.no.pulsa { border-color: var(--ouro); box-shadow: 0 0 0 4px rgba(217,167,72,.12), 0 0 28px rgba(217,167,72,.3), inset 0 1px 0 rgba(255,255,255,.2); }
+.medidor { background: rgba(255,255,255,.12); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }
+
+/* vidro escuro dentro das seções claras */
+.destaque, .aprende, .resumo .com { background: var(--vidro-navy); border: 1px solid rgba(255,255,255,.14); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 20px 44px rgba(27,36,48,.22); }
+.faixa { background: rgba(20,27,36,.86); -webkit-backdrop-filter: var(--desfoque); backdrop-filter: var(--desfoque); }
+
+/* reflexo: um aro de luz mais forte no canto de cima e no de baixo, como a borda de uma lente */
+.cartao, .barras, .especialistas li, .destaque, .aprende { position: relative; }
+.cartao::after, .barras::after, .especialistas li::after, .no::after, .destaque::after, .aprende::after { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,255,255,0) 32%, rgba(255,255,255,0) 68%, rgba(255,255,255,.55));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.escuro .cartao::after, .especialistas li::after, .no::after, .destaque::after, .aprende::after, .resumo .com::after { opacity: .45; }
+
+/* botão em gota de vidro verde */
+.botao { border-radius: 999px; background: linear-gradient(180deg, #27AE63, #1A8F4E); border: 1px solid rgba(255,255,255,.32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -3px 8px rgba(0,0,0,.14), 0 10px 30px rgba(31,158,87,.32); }
+.botao:hover { background: linear-gradient(180deg, #22A05A, #167F45); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -3px 8px rgba(0,0,0,.16), 0 14px 38px rgba(31,158,87,.45); }
+.botao::before { content: ""; position: absolute; left: 6%; right: 6%; top: 1px; height: 40%; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0)); pointer-events: none; }
+.botao > * { position: relative; }
+
+/* navegador sem desfoque: o vidro fica mais opaco, para o texto continuar legível */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cartao, .barras, .trilha li, .requisitos, .faq details { background: rgba(255,255,255,.9); }
+  .escuro .cartao, .especialistas li, .frentes li, .no { background: var(--navy-2); }
+}
+
 @media (max-width: 900px) {
   .g3, .g2 { grid-template-columns: 1fr; }
   .passos { grid-template-columns: 1fr 1fr; }
@@ -321,6 +384,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
   html { scroll-behavior: auto; }
   .js .entra { transform: none; }
   .botao::after { animation: none; }
+  body::before { animation: none; }
 }
 </style>
 </head>
@@ -422,11 +486,11 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
       </div>
       <div class="mesa" id="mesa">
         <svg class="fios" aria-hidden="true"></svg>
-        <div class="no coord" aria-hidden="true"><span class="selo"><canvas id="persona-mini"></canvas><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/><path d="m10 14 2 4 2-4"/></svg></span><strong>Coordenador</strong></div>
+        <div class="no coord" aria-hidden="true"><span class="selo"><canvas id="persona-mini"></canvas><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/><path d="m10 14 2 4 2-4"/></svg></span><strong>Agente Coordenador</strong></div>
         <ul class="frentes" aria-label="Exemplo de peças em andamento">
-          <li><strong>Réplica · Cliente A</strong><span>escrevendo</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
-          <li><strong>Quesitos · Cliente B</strong><span>aguardando sua aprovação</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
-          <li><strong>Cálculo · Cliente C</strong><span>revisão em dupla</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
+          <li><strong>Agente responsável pela Réplica</strong><span>escrevendo</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
+          <li><strong>Agente responsável pelos Quesitos</strong><span>aguardando sua aprovação</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
+          <li><strong>Agente responsável pelos Cálculos</strong><span>revisão em dupla</span><i class="folha" aria-hidden="true"><b></b><b></b><b></b><b></b></i></li>
         </ul>
         <div class="no saida" aria-hidden="true"><span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span><strong>Word no seu timbrado</strong></div>
       </div>
@@ -674,19 +738,6 @@ function anima(el, quadro) {
   document.addEventListener("visibilitychange", liga);
 }
 var temObservador = "IntersectionObserver" in window;
-
-// Faixa: as peças correm sem parar para o lado; a rolagem dá um empurrão a mais.
-var filas = document.querySelectorAll(".fila");
-if (temObservador) {
-  filas.forEach(function (f) { f.innerHTML = f.innerHTML + f.innerHTML + f.innerHTML; });
-  anima(document.querySelector(".faixa"), function (agora) {
-    filas.forEach(function (f, k) {
-      var w = f.scrollWidth / 3, x = (agora / 1000 * (calmo ? 30 : 45) + scrollY * .45) * (k ? -1 : 1);
-      x = (x % w + w) % w;
-      f.style.transform = "translate3d(" + (-x).toFixed(1) + "px,0,0)";
-    });
-  });
-}
 
 // Frase de destaque: as palavras acendem conforme a página rola; "várias ao mesmo tempo" em dourado.
 var destaque = document.querySelector(".destaque");
