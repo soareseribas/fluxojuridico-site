@@ -438,23 +438,24 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
         </div>
         <div class="campo"><label for="custo-adv">Custo mensal de um advogado<small>Salário ou retirada, mais encargos</small></label><div class="real"><span>R$</span><input type="number" id="custo-adv" min="0" step="500" value="10000" inputmode="numeric"></div></div>
         <div class="campo"><label for="qtd-adv">Advogados que usam o fluxo<small>A licença cobre até 3; cada um a mais, R$ 1.000 uma vez</small></label><div class="real"><input type="number" id="qtd-adv" min="1" max="99" step="1" value="3" inputmode="numeric"></div></div>
-        <div class="campo"><label for="assin">Assinaturas por advogado, por mês<small>Claude Max: US$ 100, cerca de R$ 600; some a base de jurisprudência</small></label><div class="real"><span>R$</span><input type="number" id="assin" min="0" step="50" value="600" inputmode="numeric"></div></div>
+        <div class="campo"><label for="contas">Contas do Claude<small>Só quem opera o fluxo precisa; quem revisa a peça pronta, não</small></label><div class="real"><input type="number" id="contas" min="1" max="99" step="1" value="1" inputmode="numeric"></div></div>
+        <div class="campo"><label for="assin">Assinatura por conta, por mês<small>Claude Max: US$ 100, cerca de R$ 560; some a base de jurisprudência</small></label><div class="real"><span>R$</span><input type="number" id="assin" min="0" step="10" value="560" inputmode="numeric"></div></div>
       </div>
       <div class="resultado" aria-live="polite">
         <h3>Custo da leitura e da redação, por mês</h3>
         <div class="duelo">
           <div class="col sem"><span class="valor" id="r-sem">R$ 25.000</span><span class="horas" id="h-sem">400 h de advogado</span><div class="poco"><i class="pilar" id="c-sem" style="height:100%"></i></div><span class="tag">Sem o fluxo</span></div>
-          <div class="col com"><span class="valor" id="r-com">R$ 4.300</span><span class="horas" id="h-com">40 h de revisão</span><div class="poco"><i class="pilar" id="c-com" style="height:17%"></i></div><span class="tag">Com o fluxo</span></div>
+          <div class="col com"><span class="valor" id="r-com">R$ 3.060</span><span class="horas" id="h-com">40 h de revisão</span><div class="poco"><i class="pilar" id="c-com" style="height:12.2%"></i></div><span class="tag">Com o fluxo</span></div>
         </div>
-        <p class="equiv" id="adv">Sem o fluxo, as 400 h equivalem a <strong>2,5 advogados em tempo integral</strong> (160 h por mês cada). Com o fluxo, entram a revisão e as assinaturas.</p>
+        <p class="equiv" id="adv">Sem o fluxo, as 400 h equivalem a <strong>2,5 advogados em tempo integral</strong> (160 h por mês cada). Com o fluxo: R$ 2.500 de revisão e R$ 560 de assinatura do Claude.</p>
         <div class="ganhos">
-          <div class="ganho"><span>Diferença por mês</span><strong id="r-eco">R$ 20.700</strong></div>
-          <div class="ganho"><span>Em 12 meses, já com a implantação</span><strong id="r-ano">R$ 240.900</strong></div>
+          <div class="ganho"><span>Diferença por mês</span><strong id="r-eco">R$ 21.940</strong></div>
+          <div class="ganho"><span>Em 12 meses, já com a implantação</span><strong id="r-ano">R$ 255.780</strong></div>
           <div class="ganho"><span>A implantação se paga em</span><strong id="r-paga">11 dias</strong></div>
         </div>
       </div>
     </div>
-    <p class="nota">Estimativa, não promessa de economia. A conta usa uma média de 5 h de leitura e redação por peça sem o fluxo e 30 minutos de revisão com ele; o valor da hora é o custo mensal informado dividido por 160 h. O preço do Claude Max é o publicado em claude.com/pricing em 1º de novembro de 2026 (US$ 100 por mês por pessoa); em reais, depende do câmbio e do IOF. A base de jurisprudência é contratada à parte. Cada escritório e cada processo variam: o tempo devolvido pode ir para mais processos, atendimento e estudo, e o fluxo não dispensa a revisão do advogado.</p>
+    <p class="nota">Estimativa, não promessa de economia. A conta usa uma média de 5 h de leitura e redação por peça sem o fluxo e 30 minutos de revisão com ele; o valor da hora é o custo mensal informado dividido por 160 h. O preço do Claude Max é o publicado em claude.com/pricing em 1º de novembro de 2026 (US$ 100 por mês, por conta); em reais, depende do câmbio e do IOF. A conta do Claude é pessoal e não pode ser dividida: no exemplo, uma conta, de quem opera o fluxo, e os demais advogados revisam as peças prontas. A base de jurisprudência é contratada à parte. Cada escritório e cada processo variam: o tempo devolvido pode ir para mais processos, atendimento e estudo, e o fluxo não dispensa a revisão do advogado.</p>
   </div>
 </section>
 
@@ -470,7 +471,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
       <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg></span><h3>Cálculo por programa</h3><p>Valores saem de programa, com os índices oficiais do Banco Central atualizados.</p></div>
       <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span><h3>Só pedido com prova</h3><p>O que não tem documento não entra, e o que falta conferir vem marcado.</p></div>
       <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>Seu timbrado, seus modelos</h3><p>Os modelos do escritório são a base, e cada ajuste que você pede vira regra do especialista.</p></div>
-      <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h3>Dados no escritório</h3><p>Autos e documentos ficam nos computadores do escritório. Cada advogado usa a própria conta do Claude.</p></div>
+      <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h3>Dados no escritório</h3><p>Autos e documentos ficam nos computadores do escritório. Quem opera o fluxo usa a própria conta do Claude.</p></div>
       <div class="item"><span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></span><h3>O sistema é seu</h3><p>Fica num repositório privado no GitHub do escritório. Os sócios sugerem, o titular aprova e todos atualizam.</p></div>
     </div>
     <p class="nota">O sistema apoia. A revisão e a decisão são sempre do advogado.</p>
@@ -497,7 +498,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
         <div class="aparte">
           <h3>O escritório contrata à parte</h3>
           <ul class="ok">
-            <li><div>Assinatura do Claude, por advogado<small>Recomendado o plano Max.</small></div></li>
+            <li><div>Assinatura do Claude, para quem opera o fluxo<small>Recomendado o plano Max. Quem só revisa a peça pronta não precisa.</small></div></li>
             <li><div>Base de jurisprudência<small>Jurisprudencia.ai, para conferir os precedentes.</small></div></li>
             <li><div>Computador com Windows e conta gratuita no GitHub</div></li>
           </ul>
@@ -526,7 +527,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
     </div>
     <div class="faq">
       <details><summary>Preciso saber programar?</summary><p>Não. Você conversa em português, como com um colega.</p></details>
-      <details><summary>Dá para pedir várias peças ao mesmo tempo?</summary><p>Sim. Cada peça anda numa frente própria, com o seu especialista, e o controle ao lado do chat mostra a fase de cada uma. Quantas andam juntas depende do plano do Claude de cada advogado.</p></details>
+      <details><summary>Dá para pedir várias peças ao mesmo tempo?</summary><p>Sim. Cada peça anda numa frente própria, com o seu especialista, e o controle ao lado do chat mostra a fase de cada uma. Quantas andam juntas depende do plano do Claude de quem opera o fluxo.</p></details>
       <details><summary>Serve para escritório que defende empresas ou que atua no cível?</summary><p>Sim. Na implantação, o escritório escolhe as áreas: trabalhista pelo empregado, trabalhista pela empresa e cível. O fluxo nasceu no polo reclamante, onde já vem com modelos prontos; na defesa da empresa e no cível, os especialistas partem dos modelos do seu escritório.</p></details>
       <details><summary>Os dados dos clientes saem do escritório?</summary><p>Não. Ficam nos computadores do escritório; o repositório leva só regras e modelos. Uma conferência automática barra nome, processo e CPF de cliente no repositório.</p></details>
       <details><summary>Recebo atualizações depois?</summary><p>A versão entregue é do escritório, e ele muda o que quiser pedindo ao coordenador. Não há plano de atualizações.</p></details>
@@ -590,7 +591,8 @@ marcaTopo();
 })();
 
 // Calculadora: média de 5 h por peça sem o fluxo, 30 minutos de revisão com ele, 160 h por mês por advogado;
-// em reais, hora = custo mensal / 160 h; implantação de R$ 7.500 até 3 advogados e R$ 1.000 por advogado a mais.
+// em reais, hora = custo mensal / 160 h; assinatura do Claude só nas contas de quem opera o fluxo (a conta é pessoal);
+// implantação de R$ 7.500 até 3 advogados e R$ 1.000 por advogado a mais.
 var volume = document.getElementById("volume");
 // Passos da barra: de 10 em 10 até 100, de 50 em 50 até 500 e de 250 em 250 até 3.000.
 var PASSOS = [];
@@ -614,7 +616,7 @@ function conta(id, alvo, forma) {
 }
 function calcula() {
   var pecas = PASSOS[Number(volume.value)], hSem = pecas * 5, hCom = pecas * 0.5, equiv = hSem / 160;
-  var hora = valor("custo-adv", 0) / 160, advs = Math.round(valor("qtd-adv", 1)), assin = valor("assin", 0) * advs;
+  var hora = valor("custo-adv", 0) / 160, advs = Math.round(valor("qtd-adv", 1)), assin = valor("assin", 0) * Math.round(valor("contas", 1));
   var implantacao = 7500 + Math.max(0, advs - 3) * 1000;
   var sem = hSem * hora, com = hCom * hora + assin, eco = sem - com, ano = sem * 12 - (com * 12 + implantacao);
   document.getElementById("volume-saida").textContent = num(pecas) + " peças";
@@ -628,7 +630,7 @@ function calcula() {
   document.getElementById("c-com").style.height = (com / maior * 100).toFixed(1) + "%";
   document.getElementById("adv").innerHTML = "Sem o fluxo, as " + num(hSem) + " h equivalem a <strong>" + (equiv < 1
     ? Math.round(equiv * 100) + "% do tempo de um advogado em tempo integral</strong> (160 h por mês)."
-    : num(equiv) + (equiv === 1 ? " advogado" : " advogados") + " em tempo integral</strong> (160 h por mês cada).") + " Com o fluxo, entram a revisão e as assinaturas.";
+    : num(equiv) + (equiv === 1 ? " advogado" : " advogados") + " em tempo integral</strong> (160 h por mês cada).") + " Com o fluxo: " + reais(Math.round(hCom * hora)) + " de revisão e " + reais(Math.round(assin)) + " de assinatura do Claude.";
   conta("r-eco", Math.round(eco), reais);
   conta("r-ano", Math.round(ano), reais);
   var meses = eco > 0 ? implantacao / eco : Infinity, paga, dias;
@@ -637,7 +639,7 @@ function calcula() {
   else { var m = Math.ceil(meses * 10) / 10; paga = num(m) + (m === 1 ? " mês" : " meses"); }
   document.getElementById("r-paga").textContent = paga;
 }
-[volume, document.getElementById("custo-adv"), document.getElementById("qtd-adv"), document.getElementById("assin")].forEach(function (el) { el.addEventListener("input", calcula); });
+[volume, document.getElementById("custo-adv"), document.getElementById("qtd-adv"), document.getElementById("contas"), document.getElementById("assin")].forEach(function (el) { el.addEventListener("input", calcula); });
 calcula();
 
 // Entrada das seções ao rolar, em cascata dentro de cada bloco.
