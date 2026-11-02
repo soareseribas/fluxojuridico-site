@@ -95,7 +95,7 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
 /* abertura com cara de IA (variação 3 escolhida pelo titular em 02/11/2026: "o pedido e a luz", ref. Draftwise e Fastshot do motionsites.ai):
    fundo preto com aurora, grade e grão; à direita, o pedido é digitado sob um feixe de luz e vira passos ao vivo */
 @property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.hero { --ia-iri: linear-gradient(100deg, #F5D08A 0%, #C4B5FD 30%, #8B5CF6 55%, #67E8F9 80%, #F5D08A 100%); background: #05070D; isolation: isolate; }
+.hero { --ia-iri: linear-gradient(100deg, var(--h-ouro) 0%, var(--h-claro) 30%, var(--h-forte) 55%, var(--h-acento) 80%, var(--h-ouro) 100%); background: var(--h-fundo); isolation: isolate; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%); mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%); }
@@ -103,15 +103,15 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 .aurora { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .32; }
-.aurora i:nth-child(1) { width: 560px; height: 560px; left: -140px; top: -160px; background: #6D28D9; animation: deriva1 22s ease-in-out infinite alternate; }
-.aurora i:nth-child(2) { width: 480px; height: 480px; right: -120px; bottom: -180px; background: #0E7490; animation: deriva2 26s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { width: 560px; height: 560px; left: -140px; top: -160px; background: var(--h-aurora1); animation: deriva1 22s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { width: 480px; height: 480px; right: -120px; bottom: -180px; background: var(--h-aurora2); animation: deriva2 26s ease-in-out infinite alternate; }
 @keyframes deriva1 { to { transform: translate(180px, 120px) scale(1.15); } }
 @keyframes deriva2 { to { transform: translate(-160px, -140px) scale(1.2); } }
-.luz { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(420px circle at var(--mx, -500px) var(--my, -500px), rgba(139,92,246,.13), transparent 70%); }
+.luz { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(420px circle at var(--mx, -500px) var(--my, -500px), rgb(var(--h-forte-rgb) / .13), transparent 70%); }
 .heroi.com-pedido { grid-template-columns: minmax(0, 1fr) 470px; gap: 56px; }
 .selo-ia { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; font-size: 14px; color: #D7DCE6; background: rgba(255,255,255,.04); margin-bottom: 26px; }
 .selo-ia::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-  background: conic-gradient(from var(--giro), rgba(255,255,255,.1) 0deg, #C4B5FD 40deg, #67E8F9 80deg, #F5D08A 120deg, rgba(255,255,255,.1) 160deg, rgba(255,255,255,.1) 360deg);
+  background: conic-gradient(from var(--giro), rgba(255,255,255,.1) 0deg, var(--h-claro) 40deg, var(--h-acento) 80deg, var(--h-ouro) 120deg, rgba(255,255,255,.1) 160deg, rgba(255,255,255,.1) 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: giroIa 4s linear infinite; }
 .selo-ia em { font-style: normal; font-weight: 700; font-size: 11px; letter-spacing: .5px; color: #05070D; background: var(--ia-iri); background-size: 200% 100%; padding: 3px 9px; border-radius: 999px; animation: iri 5s ease-in-out infinite alternate; }
 @keyframes giroIa { to { --giro: 360deg; } }
@@ -125,7 +125,14 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
 .hero .sub { color: #9AA3B2; }
 .hero .ver { font-weight: 500; }
 .hero .ver span { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.05); }
-.hero .ver svg { color: #C4B5FD; }
+.hero .ver svg { color: var(--h-claro); }
+/* prova: quantos escritórios já implementaram (número dado e confirmado pelo titular em 02/11/2026) */
+.prova { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 7px 18px 7px 7px; border-radius: 999px; font-size: 15px; color: #D7DCE6;
+  background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.025)); border: 1px solid rgba(217,167,72,.38); box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.prova strong { font-family: 'Inter Tight', var(--sans); font-weight: 600; font-size: 16px; color: #05070D; background: linear-gradient(135deg, #F5D08A, var(--ouro)); padding: 3px 11px; border-radius: 999px; white-space: nowrap; }
+.prova + .fatos { margin-top: 20px; }
+@media (max-width: 560px) { .prova { display: flex; flex-wrap: wrap; gap: 8px 10px; border-radius: 18px; padding: 10px 14px 12px 10px; line-height: 1.45; } .prova span { flex: 1 1 220px; padding-left: 4px; } }
 .hero .fatos li { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.04); backdrop-filter: blur(8px); }
 .hero .fatos strong { color: #fff; font-family: 'Inter Tight', var(--sans); font-weight: 600; }
 .hero .apoio { color: #8C95A6; }
@@ -133,40 +140,42 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
 @keyframes pulsaWa { 50% { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 0 0 6px rgba(39,174,99,.12), 0 10px 50px rgba(31,158,87,.6); } }
 .pedido-cena { position: relative; padding-top: 40px; }
 .feixe { position: absolute; left: 50%; top: -300px; width: 640px; height: 600px; transform: translateX(-50%); z-index: 0; pointer-events: none;
-  background: conic-gradient(from 180deg at 50% 0%, transparent 0deg 160deg, rgba(139,92,246,.35) 170deg, rgba(255,255,255,.6) 180deg, rgba(103,232,249,.35) 190deg, transparent 200deg 360deg);
+  background: conic-gradient(from 180deg at 50% 0%, transparent 0deg 160deg, rgb(var(--h-forte-rgb) / .35) 170deg, rgba(255,255,255,.6) 180deg, rgb(var(--h-acento-rgb) / .35) 190deg, transparent 200deg 360deg);
   filter: blur(16px); -webkit-mask-image: linear-gradient(#000 45%, transparent); mask-image: linear-gradient(#000 45%, transparent); animation: feixe 5s ease-in-out infinite alternate; }
 @keyframes feixe { from { opacity: .6; } to { opacity: 1; } }
 .pedido { position: relative; z-index: 1; border-radius: 20px; padding: 18px 18px 14px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
 .pedido::before { content: ""; position: absolute; top: -1px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, #fff, transparent); }
 .pedido::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1.5px; opacity: 0; transition: opacity .4s;
-  background: conic-gradient(from var(--giro), transparent 0deg, #C4B5FD 60deg, #67E8F9 120deg, #F5D08A 180deg, transparent 240deg);
+  background: conic-gradient(from var(--giro), transparent 0deg, var(--h-claro) 60deg, var(--h-acento) 120deg, var(--h-ouro) 180deg, transparent 240deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: giroIa 2s linear infinite; }
 .pedido.envia::after { opacity: 1; }
 .pedido-texto { min-height: 54px; font-size: 17px; color: #fff; }
-.cursor { display: inline-block; width: 2px; height: 1.1em; vertical-align: -3px; margin-left: 2px; background: #C4B5FD; animation: cursor 1s steps(1) infinite; }
+.cursor { display: inline-block; width: 2px; height: 1.1em; vertical-align: -3px; margin-left: 2px; background: var(--h-claro); animation: cursor 1s steps(1) infinite; }
 @keyframes cursor { 50% { opacity: 0; } }
 .anexos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
 .anexo { font-size: 12.5px; padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: #C9CFDA; }
-.anexo b { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #05070D; background: #F5D08A; padding: 1px 5px; border-radius: 4px; margin-right: 6px; }
+.anexo b { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #05070D; background: var(--h-ouro); padding: 1px 5px; border-radius: 4px; margin-right: 6px; }
 .enviar { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #05070D; font-weight: 700; transition: box-shadow .4s, transform .3s; }
-.enviar.on { transform: scale(.92); box-shadow: 0 0 26px rgba(196,181,253,.95), 0 0 0 7px rgba(196,181,253,.15); }
+.enviar.on { transform: scale(.92); box-shadow: 0 0 26px rgb(var(--h-claro-rgb) / .95), 0 0 0 7px rgb(var(--h-claro-rgb) / .15); }
 .passos { list-style: none; margin-top: 18px; display: grid; gap: 12px; align-content: start; min-height: 290px; position: relative; z-index: 1; }
 .passos li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #D7DCE6; opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s; }
 .passos li.on { opacity: 1; transform: none; }
-.passos .ic { width: 18px; height: 18px; border-radius: 50%; flex: none; margin-top: 3px; border: 2px solid rgba(196,181,253,.3); border-top-color: #C4B5FD; animation: rodaIa .8s linear infinite; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #05070D; }
+.passos .ic { width: 18px; height: 18px; border-radius: 50%; flex: none; margin-top: 3px; border: 2px solid rgb(var(--h-claro-rgb) / .3); border-top-color: var(--h-claro); animation: rodaIa .8s linear infinite; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #05070D; }
 @keyframes rodaIa { to { transform: rotate(360deg); } }
-.passos li.ok .ic { animation: none; border: 0; background: #C4B5FD; }
+.passos li.ok .ic { animation: none; border: 0; background: var(--h-claro); }
 .passos .ic.fim { animation: none; border: 0; background: var(--ia-iri); background-size: 200% 100%; }
 .passos small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8C95A6; }
-.esqueleto i { display: block; height: 6px; border-radius: 4px; margin-top: 7px; width: 0; background: linear-gradient(90deg, rgba(196,181,253,.45), rgba(103,232,249,.3)); transition: width 1.6s ease; }
+.esqueleto i { display: block; height: 6px; border-radius: 4px; margin-top: 7px; width: 0; background: linear-gradient(90deg, rgb(var(--h-claro-rgb) / .45), rgb(var(--h-acento-rgb) / .3)); transition: width 1.6s ease; }
 .decide { display: flex; gap: 8px; margin-top: 8px; }
 .decide span { font-size: 12.5px; padding: 5px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); color: #D7DCE6; }
-.decide span:first-child { background: #fff; color: #05070D; font-weight: 600; box-shadow: 0 0 20px rgba(196,181,253,.6); }
+.decide span:first-child { background: #fff; color: #05070D; font-weight: 600; box-shadow: 0 0 20px rgb(var(--h-claro-rgb) / .6); }
 .pensa { background: linear-gradient(90deg, #6F7889 0%, #6F7889 40%, #FFFFFF 50%, #6F7889 60%, #6F7889 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pensa 1.8s linear infinite; }
 @keyframes pensa { from { background-position: 100% 0; } to { background-position: 0 0; } }
 @media (max-width: 1020px) { .heroi.com-pedido { grid-template-columns: minmax(0, 1fr); gap: 40px; } .pedido-cena { max-width: 560px; } }
 @media (max-width: 560px) { .feixe { width: 420px; } .passos { min-height: 270px; } }
 
+/* cores da abertura: "Marinho e ouro" (escolhida pelo titular em 02/11/2026 entre 5 opções; antes, violeta) */
+.hero { --h-fundo: #04070F; --h-aurora1: #1D4ED8; --h-aurora2: #B45309; --h-forte: #3B82F6; --h-forte-rgb: 59 130 246; --h-claro: #93C5FD; --h-claro-rgb: 147 197 253; --h-acento: #F5D08A; --h-acento-rgb: 245 208 138; --h-ouro: #F5D08A; }
 /* como funciona */
 @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .como { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; align-items: center; }
@@ -316,6 +325,54 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
 footer { background: var(--noite); color: var(--cinza); font-size: 14px; padding: 40px 0; }
 footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
 
+/* padrão da página: "Marinho e ouro", o mesmo da abertura, com cartões de vidro (02/11/2026, pedido do titular:
+   "colocar o site inteiro nessas cores que aprovamos para deixar ele padrao. colocar em liquid glass").
+   As manchas de cor ficam no fundo de cada seção e rolam com ela, paradas: nada de camada fixa animada atrás do desfoque
+   (deixava rastros ao rolar no Chrome do Windows). O menu continua sem desfoque, pelo mesmo motivo. */
+:root { --fundo: #04070F; --azul: #1D4ED8; --ambar: #B45309; --texto: #F6F4EF; --texto-2: #9AA3B2; --linha: rgba(255,255,255,.12);
+  --vidro: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.025));
+  --vidro-borda: rgba(255,255,255,.13);
+  --vidro-sombra: inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(255,255,255,.03), 0 24px 60px rgba(0,0,0,.35); }
+body { background: var(--fundo); color: var(--texto); }
+.olho { color: var(--ouro); }
+#como { background: radial-gradient(45% 40% at 0% 15%, rgba(29,78,216,.22), transparent 70%), radial-gradient(35% 40% at 100% 85%, rgba(180,83,9,.13), transparent 70%), var(--fundo); }
+.escuro { background: radial-gradient(42% 48% at 8% 10%, rgba(180,83,9,.15), transparent 70%), radial-gradient(40% 50% at 92% 88%, rgba(29,78,216,.28), transparent 70%), #060B18; }
+#economia { background: radial-gradient(50% 45% at 100% 8%, rgba(29,78,216,.24), transparent 70%), radial-gradient(35% 35% at 0% 92%, rgba(180,83,9,.12), transparent 70%), var(--fundo); }
+#seguranca { background: radial-gradient(40% 50% at 12% 70%, rgba(29,78,216,.18), transparent 70%), var(--fundo); }
+#perguntas { background: radial-gradient(45% 50% at 95% 25%, rgba(29,78,216,.2), transparent 70%), radial-gradient(30% 35% at 3% 90%, rgba(180,83,9,.1), transparent 70%), var(--fundo); }
+.topo.rolou { background: rgba(4,7,15,.95); }
+
+/* vidro */
+.calc, .item, .faq details, .chips li, .no, .frentes li, .inclui, .ganho, .abas {
+  background: var(--vidro); border: 1px solid var(--vidro-borda); box-shadow: var(--vidro-sombra);
+  -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); }
+.chips li, .no, .frentes li, .ganho, .abas { box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
+.preco { background: linear-gradient(150deg, rgba(217,167,72,.2), rgba(255,255,255,.05) 55%, rgba(29,78,216,.14)); border-color: rgba(217,167,72,.45); box-shadow: var(--vidro-sombra);
+  -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); }
+.no, .frentes li { border-color: rgba(217,167,72,.28); }
+.item:hover { box-shadow: var(--vidro-sombra), 0 0 0 1px rgba(217,167,72,.35); }
+.icone { color: var(--ouro); }
+.faq summary::after { color: var(--ouro); }
+.etapas li::before { background: var(--vidro); border: 1px solid rgba(217,167,72,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.18); }
+.video { background: conic-gradient(from var(--ang), rgba(255,255,255,.1) 0deg, var(--ouro) 50deg, #3B82F6 100deg, rgba(255,255,255,.1) 150deg, rgba(255,255,255,.1) 360deg); box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+
+/* calculadora no vidro */
+.resultado { background: radial-gradient(60% 50% at 90% 0%, rgba(217,167,72,.14), transparent 70%), rgba(4,7,15,.45); border-left: 1px solid var(--vidro-borda); }
+.seletor input { accent-color: var(--ouro); }
+.real { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.14); }
+.real input { color: var(--texto); }
+
+/* fecho e rodapé */
+.fecho { background: var(--fundo); }
+footer { background: #02040A; border-top: 1px solid rgba(255,255,255,.06); }
+
+/* sem desfoque no navegador: vidro vira cartão sólido */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .calc, .item, .faq details, .chips li, .no, .frentes li, .inclui, .ganho, .abas, .etapas li::before { background: #121A2E; }
+  .preco { background: linear-gradient(150deg, #3A3220, #141C30 55%, #10204A); }
+}
+@media (max-width: 1020px) { .resultado { border-left: 0; border-top: 1px solid var(--vidro-borda); } }
+
 /* entrada das seções ao rolar */
 .js .entra { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
 .js .entra.visivel { opacity: 1; transform: none; }
@@ -382,12 +439,13 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
   <div class="wrap heroi com-pedido">
     <div class="texto">
       <span class="selo-ia"><em>IA</em>Agentes de IA para a advocacia</span>
-      <h1 id="titulo">Uma equipe de <span class="iri">especialistas jurídicos</span> dentro do Claude do seu escritório</h1>
+      <h1 id="titulo">Uma equipe de <span class="iri">especialistas jurídicos</span> de IA dentro do seu escritório</h1>
       <p class="sub">Um coordenador e 24 agentes especialistas, no trabalhista e no cível, da inicial à execução. Eles leem os autos inteiros, escrevem no estilo do seu escritório e só avançam com o seu sim.</p>
       <div class="acoes">
         <a class="botao wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Tenho interesse em implementar no meu escritório!</a>
         <a class="ver" href="#como"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4v16l14-8Z"/></svg></span>Ver em 2 minutos</a>
       </div>
+      <p class="prova"><strong>70+ escritórios</strong><span>já implementaram o Fluxo Jurídico. O próximo pode ser o seu.</span></p>
       <ul class="fatos">
         <li><strong>24</strong> especialistas</li>
         <li><strong>3</strong> áreas: empregado, empresa e cível</li>
@@ -572,7 +630,7 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
         <p>Até 3 advogados. R$ 1.000 por advogado a mais.</p>
         <ul class="ok">
           <li>Licença de uso exclusiva do escritório</li>
-          <li>Versão exclusiva, montada para o escritório e entregue na conta dele no GitHub</li>
+          <li>Versão montada exclusivamente para o escritório</li>
           <li>Sem mensalidade e sem ficar preso a ninguém</li>
         </ul>
         <div class="aparte">
@@ -580,7 +638,6 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
           <ul class="ok">
             <li><div>Assinatura do Claude, para quem opera o fluxo<small>Recomendado o plano Max. Quem só revisa a peça pronta não precisa.</small></div></li>
             <li><div>Base de jurisprudência<small>Jurisprudencia.ai, para conferir os precedentes.</small></div></li>
-            <li><div>Computador com Windows e conta gratuita no GitHub</div></li>
           </ul>
         </div>
         <a class="botao wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Tenho interesse em implementar no meu escritório!</a>
@@ -821,9 +878,9 @@ var FRAG = [
   "  float c=abs(fract(f*9.-t*.05)-.5);",
   "  float linha=smoothstep(.07,0.,c)*.45+smoothstep(.22,0.,c)*.18;",
   "  float k=modo<.5?.15+.85*smoothstep(0.,1.,uv.x):.2+.8*smoothstep(.15,.5,abs(uv.x-.5));",
-  "  vec3 col=mix(vec3(.07,.1,.17),vec3(.11,.2,.4),smoothstep(.3,.9,f));",
-  "  col=mix(col,vec3(.22,.14,.38),.4*smoothstep(.5,.92,q.y));",
-  "  col+=vec3(.03,.15,.2)*smoothstep(.55,.95,q.x);",
+  "  vec3 col=mix(vec3(.02,.035,.07),vec3(.06,.13,.36),smoothstep(.3,.9,f));",
+  "  col=mix(col,vec3(.08,.18,.5),.4*smoothstep(.5,.92,q.y));",
+  "  col+=vec3(.16,.07,.01)*smoothstep(.55,.95,q.x);",
   "  vec3 ouro=mix(vec3(.98,.56,.16),vec3(1.,.9,.6),smoothstep(.2,.8,q.y));",
   "  col+=ouro*(linha*(.55+.75*q.x)+smoothstep(.3,0.,c)*.07)*k;",
   "  col*=1.-.3*length(uv-.5);",
