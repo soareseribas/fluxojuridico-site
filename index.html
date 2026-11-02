@@ -7,7 +7,7 @@
 <meta name="description" content="Um coordenador e 24 agentes especialistas dentro do Claude do seu escritório, no trabalhista (pelo empregado ou pela empresa) e no cível, da inicial à execução. Pagamento único, sem mensalidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Public+Sans:wght@400;600;700&family=Inter+Tight:wght@500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #1B2430;
@@ -91,6 +91,81 @@ h3 { font-size: 19px; font-weight: 700; line-height: 1.3; }
 .persona figcaption span { width: 8px; height: 8px; border-radius: 50%; background: var(--ouro); animation: pulsa 1.6s ease-in-out infinite; }
 .heroi.com-persona .persona { display: block; }
 @keyframes pulsa { 0%, 100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* abertura com cara de IA (variação 3 escolhida pelo titular em 02/11/2026: "o pedido e a luz", ref. Draftwise e Fastshot do motionsites.ai):
+   fundo preto com aurora, grade e grão; à direita, o pedido é digitado sob um feixe de luz e vira passos ao vivo */
+@property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.hero { --ia-iri: linear-gradient(100deg, #F5D08A 0%, #C4B5FD 30%, #8B5CF6 55%, #67E8F9 80%, #F5D08A 100%); background: #05070D; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%); mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 75%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .08; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.aurora { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .32; }
+.aurora i:nth-child(1) { width: 560px; height: 560px; left: -140px; top: -160px; background: #6D28D9; animation: deriva1 22s ease-in-out infinite alternate; }
+.aurora i:nth-child(2) { width: 480px; height: 480px; right: -120px; bottom: -180px; background: #0E7490; animation: deriva2 26s ease-in-out infinite alternate; }
+@keyframes deriva1 { to { transform: translate(180px, 120px) scale(1.15); } }
+@keyframes deriva2 { to { transform: translate(-160px, -140px) scale(1.2); } }
+.luz { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(420px circle at var(--mx, -500px) var(--my, -500px), rgba(139,92,246,.13), transparent 70%); }
+.heroi.com-pedido { grid-template-columns: minmax(0, 1fr) 470px; gap: 56px; }
+.selo-ia { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; font-size: 14px; color: #D7DCE6; background: rgba(255,255,255,.04); margin-bottom: 26px; }
+.selo-ia::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: conic-gradient(from var(--giro), rgba(255,255,255,.1) 0deg, #C4B5FD 40deg, #67E8F9 80deg, #F5D08A 120deg, rgba(255,255,255,.1) 160deg, rgba(255,255,255,.1) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: giroIa 4s linear infinite; }
+.selo-ia em { font-style: normal; font-weight: 700; font-size: 11px; letter-spacing: .5px; color: #05070D; background: var(--ia-iri); background-size: 200% 100%; padding: 3px 9px; border-radius: 999px; animation: iri 5s ease-in-out infinite alternate; }
+@keyframes giroIa { to { --giro: 360deg; } }
+.hero h1 { font-family: 'Inter Tight', var(--sans); font-weight: 600; line-height: 1.04; letter-spacing: -.035em; font-size: clamp(36px, 5vw, 66px); }
+.hero h1 .iri { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.01em; padding-right: .05em;
+  background: var(--ia-iri); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: iri 6s ease-in-out infinite alternate; }
+@keyframes iri { from { background-position: 0 0; } to { background-position: 100% 0; } }
+.hero h1 .p { display: inline-block; }
+.js .hero h1 .p > span { display: inline-block; opacity: 0; filter: blur(12px); transform: translateY(.3em); transition: opacity .9s ease, filter .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+.js .hero.vis h1 .p > span { opacity: 1; filter: none; transform: none; }
+.hero .sub { color: #9AA3B2; }
+.hero .ver { font-weight: 500; }
+.hero .ver span { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.05); }
+.hero .ver svg { color: #C4B5FD; }
+.hero .fatos li { border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.04); backdrop-filter: blur(8px); }
+.hero .fatos strong { color: #fff; font-family: 'Inter Tight', var(--sans); font-weight: 600; }
+.hero .apoio { color: #8C95A6; }
+.hero .botao { animation: pulsaWa 2.8s ease-in-out infinite; }
+@keyframes pulsaWa { 50% { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 0 0 6px rgba(39,174,99,.12), 0 10px 50px rgba(31,158,87,.6); } }
+.pedido-cena { position: relative; padding-top: 40px; }
+.feixe { position: absolute; left: 50%; top: -300px; width: 640px; height: 600px; transform: translateX(-50%); z-index: 0; pointer-events: none;
+  background: conic-gradient(from 180deg at 50% 0%, transparent 0deg 160deg, rgba(139,92,246,.35) 170deg, rgba(255,255,255,.6) 180deg, rgba(103,232,249,.35) 190deg, transparent 200deg 360deg);
+  filter: blur(16px); -webkit-mask-image: linear-gradient(#000 45%, transparent); mask-image: linear-gradient(#000 45%, transparent); animation: feixe 5s ease-in-out infinite alternate; }
+@keyframes feixe { from { opacity: .6; } to { opacity: 1; } }
+.pedido { position: relative; z-index: 1; border-radius: 20px; padding: 18px 18px 14px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+.pedido::before { content: ""; position: absolute; top: -1px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, #fff, transparent); }
+.pedido::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1.5px; opacity: 0; transition: opacity .4s;
+  background: conic-gradient(from var(--giro), transparent 0deg, #C4B5FD 60deg, #67E8F9 120deg, #F5D08A 180deg, transparent 240deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: giroIa 2s linear infinite; }
+.pedido.envia::after { opacity: 1; }
+.pedido-texto { min-height: 54px; font-size: 17px; color: #fff; }
+.cursor { display: inline-block; width: 2px; height: 1.1em; vertical-align: -3px; margin-left: 2px; background: #C4B5FD; animation: cursor 1s steps(1) infinite; }
+@keyframes cursor { 50% { opacity: 0; } }
+.anexos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.anexo { font-size: 12.5px; padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: #C9CFDA; }
+.anexo b { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #05070D; background: #F5D08A; padding: 1px 5px; border-radius: 4px; margin-right: 6px; }
+.enviar { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #05070D; font-weight: 700; transition: box-shadow .4s, transform .3s; }
+.enviar.on { transform: scale(.92); box-shadow: 0 0 26px rgba(196,181,253,.95), 0 0 0 7px rgba(196,181,253,.15); }
+.passos { list-style: none; margin-top: 18px; display: grid; gap: 12px; align-content: start; min-height: 290px; position: relative; z-index: 1; }
+.passos li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #D7DCE6; opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s; }
+.passos li.on { opacity: 1; transform: none; }
+.passos .ic { width: 18px; height: 18px; border-radius: 50%; flex: none; margin-top: 3px; border: 2px solid rgba(196,181,253,.3); border-top-color: #C4B5FD; animation: rodaIa .8s linear infinite; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #05070D; }
+@keyframes rodaIa { to { transform: rotate(360deg); } }
+.passos li.ok .ic { animation: none; border: 0; background: #C4B5FD; }
+.passos .ic.fim { animation: none; border: 0; background: var(--ia-iri); background-size: 200% 100%; }
+.passos small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #8C95A6; }
+.esqueleto i { display: block; height: 6px; border-radius: 4px; margin-top: 7px; width: 0; background: linear-gradient(90deg, rgba(196,181,253,.45), rgba(103,232,249,.3)); transition: width 1.6s ease; }
+.decide { display: flex; gap: 8px; margin-top: 8px; }
+.decide span { font-size: 12.5px; padding: 5px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); color: #D7DCE6; }
+.decide span:first-child { background: #fff; color: #05070D; font-weight: 600; box-shadow: 0 0 20px rgba(196,181,253,.6); }
+.pensa { background: linear-gradient(90deg, #6F7889 0%, #6F7889 40%, #FFFFFF 50%, #6F7889 60%, #6F7889 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pensa 1.8s linear infinite; }
+@keyframes pensa { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@media (max-width: 1020px) { .heroi.com-pedido { grid-template-columns: minmax(0, 1fr); gap: 40px; } .pedido-cena { max-width: 560px; } }
+@media (max-width: 560px) { .feixe { width: 420px; } .passos { min-height: 270px; } }
 
 /* como funciona */
 @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
@@ -303,10 +378,11 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
 
 <!-- 1. Abertura -->
 <header class="hero" id="inicio">
-  <canvas class="fundo" id="fundo-topo" aria-hidden="true"></canvas>
-  <div class="wrap heroi">
+  <div class="aurora" aria-hidden="true"><i></i><i></i></div><div class="luz" aria-hidden="true"></div>
+  <div class="wrap heroi com-pedido">
     <div class="texto">
-      <h1>Uma equipe de <span class="brilho">especialistas jurídicos</span> dentro do Claude do seu escritório</h1>
+      <span class="selo-ia"><em>IA</em>Agentes de IA para a advocacia</span>
+      <h1 id="titulo">Uma equipe de <span class="iri">especialistas jurídicos</span> dentro do Claude do seu escritório</h1>
       <p class="sub">Um coordenador e 24 agentes especialistas, no trabalhista e no cível, da inicial à execução. Eles leem os autos inteiros, escrevem no estilo do seu escritório e só avançam com o seu sim.</p>
       <div class="acoes">
         <a class="botao wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Tenho interesse em implementar no meu escritório!</a>
@@ -319,10 +395,14 @@ footer p + p { margin-top: 8px; font-size: 13px; opacity: .75; }
       </ul>
       <p class="apoio">Desenvolvido e usado no dia a dia por advogados trabalhistas.</p>
     </div>
-    <figure class="persona" aria-hidden="true">
-      <canvas id="persona"></canvas>
-      <figcaption><span></span>Coordenador</figcaption>
-    </figure>
+    <div class="pedido-cena" aria-hidden="true">
+      <div class="feixe"></div>
+      <div class="pedido" id="pedido">
+        <div class="pedido-texto"><span id="digita">Faça a réplica à contestação, pelo empregado.</span><i class="cursor"></i></div>
+        <div class="anexos"><span class="anexo"><b>PDF</b><span id="paginas">autos · 412 p.</span></span><span class="anexo" id="area">Trabalhista</span><span class="enviar" id="enviar">↑</span></div>
+      </div>
+      <ol class="passos" id="passos"></ol>
+    </div>
   </div>
 </header>
 
@@ -649,7 +729,7 @@ if (temObservador) {
   var observa = new IntersectionObserver(function (itens) {
     itens.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visivel"); observa.unobserve(e.target); } });
   }, { rootMargin: "0px 0px -8% 0px" });
-  var ALVOS = ".hero .texto > *, .hero .persona, .cabeca > *, .como > *, .etapas li, .chips li, .paralelo > div, .calc, .g3 > *, .oferta > *, .faq details, .fecho h2, .fecho .sub, .fecho .botao, section .nota";
+  var ALVOS = ".hero .texto > *:not(h1), .pedido-cena, .cabeca > *, .como > *, .etapas li, .chips li, .paralelo > div, .calc, .g3 > *, .oferta > *, .faq details, .fecho h2, .fecho .sub, .fecho .botao, section .nota";
   document.querySelectorAll(ALVOS).forEach(function (el) {
     var i = Array.prototype.indexOf.call(el.parentElement.children, el);
     el.style.setProperty("--d", Math.min(i, 8) * .08 + "s");
@@ -793,7 +873,6 @@ function fundoAnimado(canvas, modo) {
   new IntersectionObserver(function (itens) { visivel = itens[0].isIntersecting; liga(); }).observe(canvas);
   document.addEventListener("visibilitychange", liga);
 }
-fundoAnimado(document.getElementById("fundo-topo"), 0);
 fundoAnimado(document.getElementById("fundo-fecho"), 1);
 
 // Figura do coordenador: um busto de terno feito de partículas, que se monta ao aparecer, respira, vira devagar
@@ -908,7 +987,76 @@ function persona(canvas, dono, brilho) {
     gl.uniform1f(u.linhas, 0); usa(pontos); gl.drawArrays(gl.POINTS, 0, total);
   });
 }
-persona(document.getElementById("persona"), document.querySelector(".heroi"), 1);
+
+// Abertura: título palavra por palavra, luz que segue o mouse e o pedido digitado que vira passos ao vivo.
+// Roda mesmo com as animações do Windows desligadas: é movimento suave e é o que mostra o produto.
+(function () {
+  var hero = document.getElementById("inicio"), h1 = document.getElementById("titulo"), n = 0;
+  (function quebra(no, iri) {
+    Array.prototype.slice.call(no.childNodes).forEach(function (c) {
+      if (c.nodeType !== 3) { quebra(c, c.className === "iri"); return; }
+      var f = document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(function (p) {
+        if (!p) return;
+        if (/^\s+$/.test(p)) { f.appendChild(document.createTextNode(p)); return; }
+        var w = document.createElement("span"), i = document.createElement("span");
+        w.className = "p"; i.textContent = p; i.style.transitionDelay = (.1 + n++ * .06).toFixed(2) + "s";
+        if (iri) i.className = "iri";
+        w.appendChild(i); f.appendChild(w);
+      });
+      no.replaceChild(f, c);
+    });
+  })(h1, false);
+  // cada palavra do degradê fica com o próprio degradê: o span de fora sai
+  var fora = h1.querySelector("span.iri:not(.p span)");
+  if (fora) { while (fora.firstChild) h1.insertBefore(fora.firstChild, fora); h1.removeChild(fora); }
+  requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("vis"); }); });
+  hero.addEventListener("pointermove", function (e) {
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty("--mx", (e.clientX - r.left) + "px"); hero.style.setProperty("--my", (e.clientY - r.top) + "px");
+  });
+
+  var dig = document.getElementById("digita"), env = document.getElementById("enviar"), cx = document.getElementById("pedido"), ps = document.getElementById("passos"),
+    area = document.getElementById("area"), pg = document.getElementById("paginas"), visivel = true;
+  if (temObservador) new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }).observe(hero);
+  var PED = [
+    ["Faça a réplica à contestação, pelo empregado.", "Trabalhista", "Réplica", "412"],
+    ["Prepare os quesitos para a perícia médica.", "Trabalhista", "Quesitos periciais", "268"],
+    ["Faça a apelação contra a sentença.", "Cível", "Recursos cíveis", "190"]
+  ];
+  function espera(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function mostra(li) { requestAnimationFrame(function () { requestAnimationFrame(function () { li.classList.add("on"); }); }); }
+  function passo(txt, det, esq) {
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="ic"></span><div><span class="pensa">' + txt + "</span>" + (det ? "<small>" + det + "</small>" : "") + (esq ? '<span class="esqueleto"><i></i><i></i><i></i></span>' : "") + "</div>";
+    ps.appendChild(li); mostra(li);
+    if (esq) setTimeout(function () { var b = li.querySelectorAll(".esqueleto i"); b[0].style.width = "94%"; b[1].style.width = "80%"; b[2].style.width = "56%"; }, 80);
+    return li;
+  }
+  function ok(li) { li.classList.add("ok"); li.querySelector(".ic").textContent = "✓"; li.querySelector(".pensa").className = ""; }
+  function final() {
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="ic fim">✦</span><div><span>Pronta para o seu sim</span><div class="decide"><span>Aprovar</span><span>Ajustar</span></div></div>';
+    ps.appendChild(li); mostra(li);
+  }
+  (async function () {
+    for (var k = 0; ; k = (k + 1) % PED.length) {
+      while (!visivel || document.hidden) await espera(400);
+      var p = PED[k];
+      ps.innerHTML = ""; dig.textContent = ""; cx.classList.remove("envia"); env.classList.remove("on");
+      area.textContent = p[1]; pg.textContent = "autos · " + p[3] + " p.";
+      await espera(700);
+      for (var i = 0; i < p[0].length; i++) { dig.textContent += p[0][i]; await espera(35 + Math.random() * 45); }
+      await espera(450); env.classList.add("on"); cx.classList.add("envia"); await espera(500);
+      var a = passo("Lendo os autos inteiros", p[3] + " páginas"); await espera(1700); ok(a);
+      a = passo("Chamando o especialista", p[2]); await espera(1200); ok(a);
+      a = passo("Escrevendo no estilo do seu escritório", "", true); await espera(2300); ok(a);
+      a = passo("Conferindo cada fato com os autos", ""); await espera(1400); ok(a);
+      cx.classList.remove("envia"); env.classList.remove("on");
+      final(); await espera(4200);
+    }
+  })();
+})();
 var miniatura = document.getElementById("persona-mini");
 persona(miniatura, miniatura.parentNode, .85);
 </script>
